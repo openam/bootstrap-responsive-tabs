@@ -1,99 +1,133 @@
-<!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Bootstrap-responsive-tabs : " />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Bootstrap-responsive-tabs</title>
+    <title>Tabs</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
   </head>
-
   <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/openam/bootstrap-responsive-tabs">View on GitHub</a>
-
-          <h1 id="project_title">Bootstrap-responsive-tabs</h1>
-          <h2 id="project_tagline"></h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/openam/bootstrap-responsive-tabs/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/openam/bootstrap-responsive-tabs/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Responsive Tabs</a>
+        </div>
+      </div>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="bootstrap-responsive-tabs" class="anchor" href="#bootstrap-responsive-tabs"><span class="octicon octicon-link"></span></a>Bootstrap Responsive Tabs</h1>
 
-<p>This uses standard Bootstrap 3.0.0 css and js for the tabs and collapse accordion items. They are regular <a href="http://getbootstrap.com/javascript/#tabs">tabs</a> at some screen sizes and <a href="http://getbootstrap.com/javascript/#collapse">collapsible</a> components based on the Bootstrap <a href="http://getbootstrap.com/css/#responsive-utilities">Responsive Utilities</a>, which can be defined by editing one attribute in the javascript file.</p>
+    <div class="container">
 
-<h1>
-<a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h1>
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Responsive Tabs Example</h1>
+        <p>This example illustrates how the responsive tabs works. It uses the standard <a href="//getbootstrap.com">Bootstrap 3.0.0</a> responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference just resize the width of your window.</p>
+      </div>
 
-<p>To view the demo visit <a href="http://openam.github.io/bootstrap-responsive-tabs/">http://openam.github.io/bootstrap-responsive-tabs/</a></p>
+      <h3>Responsive Tabs</h3>
 
-<h1>
-<a name="key-features" class="anchor" href="#key-features"><span class="octicon octicon-link"></span></a>Key features</h1>
+      <ul class="nav nav-tabs responsive" id="myTab">
+        <li class="active"><a href="#how-to">How To</a></li>
+        <li><a href="#features">Key Features</a></li>
+        <li><a href="#source">Source</a></li>
+      </ul>
 
-<ul>
-<li>Uses standard bootstrap tab markup.</li>
-<li>Collapsible component (accordion) is created with jquery.</li>
-<li>Tabs and accordions are accessible via keyboard.</li>
-<li>Supports multiple tab groups on a page, with or without each being responsive.</li>
-</ul><h1>
-<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h1>
-
-<ul>
-<li>On load the first item in the accordion and tab views are set to active opened. However only the respective set will be show.</li>
-<li>When the window is resized to change from accordion to tabs, the last tab that was opened will be opened even if a different accordion was selected.</li>
-<li>Only tried in Chrome and Firefox, but it should work in IE as well.</li>
-</ul><h1>
-<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How to use</h1>
-
-<ul>
-<li>Include bootstrap css and js.</li>
-<li>Include responsive-tabs.js.</li>
-<li>Setup tabs per the bootstrap documents.</li>
-<li>Add a <em>responsive</em> class to the <em>ul</em> that is used to create the tabs.</li>
-<li>Add a <em>responsive</em> class to the <em>div</em> that is used to create the tab-content.</li>
-<li>Edit the responsive-tabs.js to set where you want to have collapse in place of tabs</li>
-</ul><blockquote>
-<p><strong>Note:</strong> The only difference from the standard bootstrap tab markup to the responsive markup is the addition of the responsive.</p>
-</blockquote>
-
-<pre><code>&lt;ul class="nav nav-tabs responsive" id="myTab"&gt;
+      <div class="tab-content repsonsive">
+        <div class="tab-pane active" id="how-to">
+          <h3>Steps</h3>
+          <ol>
+            <li>Include bootstrap css and js.</li>
+            <li>Include responsive-tabs.js.</li>
+            <li>Setup tabs per the bootstrap <a href="//getbootstrap.com/javascript/#tabs">documents</a>.</li>
+            <li>Add a <code>responsive</code> class to the <code>ul</code> that is used to create the tabs.</li>
+            <li>Add a <code>responsive</code> class to the <code>div</code> that is used to create the tab-content.</li>
+            <li>Edit the responsive-tabs.js to set where you want to have collapse in place of tabs</li>
+          </ol>
+          <h3>Example Markup</h3>
+          <div class="alert alert-info">
+            <strong>Note:</strong> The only difference from the standard bootstrap tab markup to the responsive markup is the addition of the <em class="text-danger">responsive</em>.
+          </div>
+          <pre>
+&lt;ul class="nav nav-tabs <span class="text-danger">responsive</span>" id="myTab"&gt;
   &lt;li class="active"&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href="#profile"&gt;Profile&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href="#messages"&gt;Messages&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class="tab-content responsive"&gt;
+&lt;div class="tab-content <span class="text-danger">responsive</span>"&gt;
   &lt;div class="tab-pane active" id="home"&gt;...content...&lt;/div&gt;
   &lt;div class="tab-pane" id="profile"&gt;...content...&lt;/div&gt;
   &lt;div class="tab-pane" id="messages"&gt;...content...&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-      </section>
-    </div>
+&lt;/div&gt;</pre>
+        </div>
+        <div class="tab-pane" id="features">
+          <br>
+          <ul>
+            <li>Uses standard bootstrap tab markup</li>
+            <li>Accordion is created with jquery</li>
+            <li>Tabs and Accordion are the fully accessible via keyboard</li>
+            <li>Supports multiple tabs on a page, with or without being responsive</li>
+          </ul>
+        </div>
+        <div class="tab-pane" id="source">
+          <h3>Source code</h3>
+          <p>You may download the source code from <a href="https://github.com/openam/bootstrap-responsive-tabs/archive/master.zip">github</a>.</p>
+          <h3>Reporting issues</h3>
+          <p>If you have any issues with this please report in on <a href="https://github.com/openam/bootstrap-responsive-tabs/issues">github</a>.</p>
+          <h3>Contributing</h3>
+          <p>If you'd like to contribute to this project, you can fork the project send a pull request.</p>
+        </div>
+      </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Bootstrap-responsive-tabs maintained by <a href="https://github.com/openam">openam</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+      <hr>
+      <h3>Standard Non-Responsive Tabs</h3>
 
-    
+      <ul class="nav nav-tabs" id="moreTabs">
+        <li class="active"><a href="#markup">Markup</a></li>
+        <li><a href="#profile2">Profile2</a></li>
+        <li><a href="#messages2">Messages2</a></li>
+      </ul>
 
+      <div class="tab-content">
+        <div class="tab-pane active" id="markup">
+          <h3>Example Markup</h3>
+          <div class="alert alert-info">
+            <strong>Note:</strong> This is the standard markup, which is the same as the responsive setup but without the addition of the <em class="text-danger">responsive</em> class.
+          </div>
+          <pre>
+&lt;ul class="nav nav-tabs id="myTab"&gt;
+  &lt;li class="active"&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#profile"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#messages"&gt;Messages&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="tab-content"&gt;
+  &lt;div class="tab-pane active" id="home"&gt;...content...&lt;/div&gt;
+  &lt;div class="tab-pane" id="profile"&gt;...content...&lt;/div&gt;
+  &lt;div class="tab-pane" id="messages"&gt;...content...&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <div class="tab-pane" id="profile2">... Profile 2 Content ...</div>
+        <div class="tab-pane" id="messages2">... Messages 2 Content ...</div>
+      </div>
+
+
+    </div> <!-- /container -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="js/responsive-tabs.js"></script>
+    <script type="text/javascript">
+      $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+      });
+
+      $('#moreTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+      });
+
+    </script>
   </body>
 </html>
