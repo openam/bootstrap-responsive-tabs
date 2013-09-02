@@ -1,9 +1,15 @@
+if (typeof fakewaffle ==='undefined') {
+    var fakewaffle = {};
+};
 
-(function($) {
+fakewaffle.responsiveTabs = function (collapseDisplayed) {
     var tabGroups         = $('.nav-tabs.responsive');
-    var collapseDisplayed = ['xs', 'sm'];
     var hidden            = '';
     var visible           = '';
+
+    if (typeof collapseDisplayed === 'undefined') {
+        collapseDisplayed = ['xs', 'sm'];
+    };
 
     $.each(collapseDisplayed, function() {
         hidden  += ' hidden-'+this;
@@ -56,4 +62,4 @@
         $tabGroup.addClass(hidden);
         $('.tab-content.repsonsive').addClass(hidden);
     });
-})(jQuery);
+};

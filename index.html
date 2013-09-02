@@ -41,11 +41,11 @@
             <li>Setup tabs per the bootstrap <a href="//getbootstrap.com/javascript/#tabs">documents</a>.</li>
             <li>Add a <code>responsive</code> class to the <code>ul</code> that is used to create the tabs.</li>
             <li>Add a <code>responsive</code> class to the <code>div</code> that is used to create the tab-content.</li>
-            <li>Edit the responsive-tabs.js to set where you want to have collapse in place of tabs</li>
+            <li>Call <code>fakewaffle.responsiveTabs(['xs', 'sm']);</code> in your load up script, while passing an array of bootstrap sizes that you want the to be displayed as accordions, e.g. ['xs', 'sm'] which is used by default.</li>
           </ol>
           <h3>Example Markup</h3>
           <div class="alert alert-info">
-            <strong>Note:</strong> The only difference from the standard bootstrap tab markup to the responsive markup is the addition of the <em class="text-danger">responsive</em>.
+            <strong>Note:</strong> The only difference from the standard bootstrap tab markup to the responsive markup is the addition of the <em class="text-danger">responsive</em>, and calling the <code>fakewaffle.responsiveTabs();</code> function.
           </div>
           <pre>
 &lt;ul class="nav nav-tabs <span class="text-danger">responsive</span>" id="myTab"&gt;
@@ -58,7 +58,13 @@
   &lt;div class="tab-pane active" id="home"&gt;...content...&lt;/div&gt;
   &lt;div class="tab-pane" id="profile"&gt;...content...&lt;/div&gt;
   &lt;div class="tab-pane" id="messages"&gt;...content...&lt;/div&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;
+  (function($) {
+      fakewaffle.responsiveTabs(['xs', 'sm']);
+  })(jQuery);
+&lt;/script&gt;</pre>
         </div>
         <div class="tab-pane" id="features">
           <br>
@@ -127,6 +133,9 @@
         e.preventDefault()
         $(this).tab('show')
       });
+      (function($) {
+          fakewaffle.responsiveTabs(['xs', 'sm']);
+      })(jQuery);
 
     </script>
   </body>
