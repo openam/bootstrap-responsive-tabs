@@ -1,36 +1,38 @@
-if (typeof fakewaffle ==='undefined') {
+if (typeof fakewaffle === 'undefined') {
     var fakewaffle = {};
-};
+}
 
 fakewaffle.responsiveTabs = function (collapseDisplayed) {
-    var tabGroups         = $('.nav-tabs.responsive');
-    var hidden            = '';
-    var visible           = '';
+    "use strict";
+    var tabGroups         = $('.nav-tabs.responsive'),
+        hidden            = '',
+        visible           = '';
 
     if (typeof collapseDisplayed === 'undefined') {
         collapseDisplayed = ['xs', 'sm'];
-    };
+    }
 
-    $.each(collapseDisplayed, function() {
-        hidden  += ' hidden-'+this;
-        visible += ' visible-'+this;
+    $.each(collapseDisplayed, function () {
+        hidden  += ' hidden-' + this;
+        visible += ' visible-' + this;
     });
 
-    $.each(tabGroups, function(){
-        var $tabGroup = $(this);
-        var tabs = $tabGroup.find('li a');
+    $.each(tabGroups, function () {
+        var $tabGroup   = $(this),
+            tabs        = $tabGroup.find('li a'),
+            collapseDiv = $("<div></div>", {
+                "class" : "panel-group responsive" + visible,
+                "id"    : 'collapse-' + $tabGroup.attr('id')
+            });
 
-        var collapseDiv = $( "<div></div>", {
-            "class" : "panel-group responsive" + visible,
-            "id"    : 'collapse-' + $tabGroup.attr('id'),
-        });
+        $.each(tabs, function () {
+            var $this  = $(this),
+                active = '';
 
-        $.each(tabs, function() {
-            var $this = $(this);
-            var active = '';
             if ($this.parent().hasClass('active')) {
                 active = ' in';
-            };
+            }
+
             collapseDiv.append(
                 $('<div>').attr('class', 'panel panel-default').html(
                     $('<div>').attr('class', 'panel-heading').html(
@@ -48,10 +50,10 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
                 ).append(
                     $('<div>', {
                         'id' : 'collapse-' + $this.attr('href').replace(/#/g, ''),
-                        'class' : 'panel-collapse collapse'+active
+                        'class' : 'panel-collapse collapse' + active
                     }).html(
                         $('<div>').attr('class', 'panel-body').html(
-                            $('#'+$this.attr('href').replace(/#/g, '')).html()
+                            $('#' + $this.attr('href').replace(/#/g, '')).html()
                         )
                     )
                 )
