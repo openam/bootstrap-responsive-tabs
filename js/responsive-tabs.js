@@ -42,7 +42,7 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
                                 'data-toggle': 'collapse',
                                 'data-parent' : '#collapse-' + $tabGroup.attr('id'),
                                 'href' : '#collapse-' + $this.attr('href').replace(/#/g, ''),
-                                'text': $this.html()
+                                'html': $this.html()
 
                             })
                         )
