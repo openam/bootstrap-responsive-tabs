@@ -12,9 +12,9 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
         collapseDisplayed = ['phone', 'tablet'];
     }
 
-    $.each(collapseDisplayed, function () {
-        hidden  += ' hidden-' + this;
-        visible += ' visible-' + this;
+    $.each(collapseDisplayed, function (index, value) {
+        hidden  += ' hidden-' + value;
+        visible += ' visible-' + value;
     });
 
     $.each(tabGroups, function () {
