@@ -62,6 +62,6 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
 
         $tabGroup.after(collapseDiv);
         $tabGroup.addClass(hidden);
-        $('.tab-content.repsonsive').addClass(hidden);
+        $('.tab-content.responsive').addClass(hidden);
     });
 };
