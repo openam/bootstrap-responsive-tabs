@@ -4,6 +4,8 @@ if (fakewaffle === undefined) {
 
 fakewaffle.responsiveTabs = function (collapseDisplayed) {
     "use strict";
+    fakewaffle.currentPosition = 'tabs';
+
     var tabGroups = $('.nav-tabs.responsive'),
         hidden    = '',
         visible   = '';
@@ -51,9 +53,7 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
                         'id' : 'collapse-' + $this.attr('href').replace(/#/g, ''),
                         'class' : 'panel-collapse collapse' + active
                     }).html(
-                        $('<div>').attr('class', 'panel-body').html(
-                            $('#' + $this.attr('href').replace(/#/g, '')).html()
-                        )
+                        $('<div>').attr('class', 'panel-body').html('')
                     )
                 )
             );
@@ -64,4 +64,43 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
         $('.tab-content.responsive').addClass(hidden);
     });
 
+    fakewaffle.checkResize();
 };
+
+fakewaffle.checkResize = function () {
+    "use strict";
+    if ($(".panel-group.responsive").is(":visible") === true && fakewaffle.currentPosition === 'tabs') {
+        fakewaffle.toggleResponsiveTabContent();
+        fakewaffle.currentPosition = 'panel';
+    } else if ($(".panel-group.responsive").is(":visible") === false && fakewaffle.currentPosition === 'panel') {
+        fakewaffle.toggleResponsiveTabContent();
+        fakewaffle.currentPosition = 'tabs';
+    }
+
+};
+
+fakewaffle.toggleResponsiveTabContent = function () {
+    "use strict";
+    var tabGroups = $('.nav-tabs.responsive');
+
+    $.each(tabGroups, function () {
+        var tabs = $(this).find('li a');
+
+        $.each(tabs, function () {
+            var href         = $(this).attr('href').replace(/#/g, ''),
+                tabId        = "#" + href,
+                panelId      = "#collapse-" + href,
+                tabContent   = $(tabId).html(),
+                panelContent = $(panelId + " div:first-child").html();
+
+            $(tabId).html(panelContent);
+            $(panelId + " div:first-child").html(tabContent);
+        });
+
+    });
+};
+
+$(window).resize(function () {
+    "use strict";
+    fakewaffle.checkResize();
+});
