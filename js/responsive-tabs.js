@@ -60,7 +60,7 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
             );
         });
 
-        $tabGroup.after(collapseDiv);
+        $tabGroup.next().after(collapseDiv);
         $tabGroup.addClass(hidden);
         $('.tab-content.responsive').addClass(hidden);
     });
