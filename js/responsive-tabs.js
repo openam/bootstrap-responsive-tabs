@@ -1,20 +1,20 @@
-if (typeof fakewaffle === 'undefined') {
+if (fakewaffle === undefined) {
     var fakewaffle = {};
 }
 
 fakewaffle.responsiveTabs = function (collapseDisplayed) {
     "use strict";
-    var tabGroups         = $('.nav-tabs.responsive'),
-        hidden            = '',
-        visible           = '';
+    var tabGroups = $('.nav-tabs.responsive'),
+        hidden    = '',
+        visible   = '';
 
-    if (typeof collapseDisplayed === 'undefined') {
+    if (collapseDisplayed === undefined) {
         collapseDisplayed = ['xs', 'sm'];
     }
 
-    $.each(collapseDisplayed, function (index, value) {
-        hidden  += ' hidden-' + value;
-        visible += ' visible-' + value;
+    $.each(collapseDisplayed, function () {
+        hidden  += ' hidden-' + this;
+        visible += ' visible-' + this;
     });
 
     $.each(tabGroups, function () {
@@ -43,7 +43,6 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
                                 'data-parent' : '#collapse-' + $tabGroup.attr('id'),
                                 'href' : '#collapse-' + $this.attr('href').replace(/#/g, ''),
                                 'html': $this.html()
-
                             })
                         )
                     )
@@ -64,4 +63,5 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
         $tabGroup.addClass(hidden);
         $('.tab-content.responsive').addClass(hidden);
     });
+
 };
