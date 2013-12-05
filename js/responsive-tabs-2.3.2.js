@@ -63,6 +63,7 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
     });
 
     fakewaffle.checkResize();
+    fakewaffle.bindTabToCollapse();
 };
 
 fakewaffle.checkResize = function () {
@@ -97,6 +98,29 @@ fakewaffle.toggleResponsiveTabContent = function () {
 
     });
 };
+
+fakewaffle.bindTabToCollapse = function () {
+    "use strict";
+    var tabs     = $('.nav-tabs.responsive').find('li a'),
+        collapse = $(".accordion.responsive").find('.accordion-body');
+
+    tabs.on('shown', function (e) {
+        var $current  = $($(e.target)[0].hash.replace(/#/, '#collapse-')),
+            $previous = $($(e.relatedTarget)[0].hash.replace(/#/, '#collapse-'));
+
+        if (!$current.hasClass('in')) {
+            $current.addClass('in').height('auto');
+            $previous.removeClass('in').height('0px');
+        }
+    });
+
+    collapse.on('shown', function (e) {
+        var current = $(e.target).context.id.replace(/collapse-/g, '#');
+
+        console.log('collapse shown');
+        $('a[href="' + current + '"]').tab('show');
+    });
+}
 
 $(window).resize(function () {
     "use strict";
