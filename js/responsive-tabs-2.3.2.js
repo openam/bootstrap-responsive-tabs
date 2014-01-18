@@ -28,8 +28,14 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
             });
 
         $.each(tabs, function () {
-            var $this  = $(this),
-                active = '';
+            var $this    = $(this),
+                oldClass = $this.attr('class') === undefined ? '' : $this.attr('class'),
+                newClass = 'accordion-toggle',
+                active   = '';
+
+            if (oldClass.length > 0) {
+                newClass += ' ' + oldClass;
+            };
 
             if ($this.parent().hasClass('active')) {
                 active = ' in';
@@ -39,7 +45,7 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
                 $('<div>').attr('class', 'accordion-group').html(
                     $('<div>').attr('class', 'accordion-heading').html(
                         $('<a>', {
-                            'class' : 'accordion-toggle',
+                            'class' : newClass,
                             'data-toggle': 'collapse',
                             'data-parent' : '#collapse-' + $tabGroup.attr('id'),
                             'href' : '#collapse-' + $this.attr('href').replace(/#/g, ''),
