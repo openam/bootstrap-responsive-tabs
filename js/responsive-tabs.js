@@ -28,13 +28,22 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
             });
 
         $.each(tabs, function () {
-            var $this    = $(this),
-                oldClass = $this.attr('class') === undefined ? '' : $this.attr('class'),
-                newClass = 'accordion-toggle',
-                active   = '';
+            var $this          = $(this),
+                active         = '',
+                oldLinkClass   = $this.attr('class') === undefined ? '' : $this.attr('class'),
+                newLinkClass   = 'accordion-toggle',
+                oldParentClass = $this.parent().attr('class') === undefined ? '' : $this.parent().attr('class'),
+                newParentClass = 'panel panel-default';
 
-            if (oldClass.length > 0) {
-                newClass += ' ' + oldClass;
+            if (oldLinkClass.length > 0) {
+                newLinkClass += ' ' + oldLinkClass;
+            };
+
+            if (oldParentClass.length > 0) {
+                oldParentClass = oldParentClass.replace(/\bactive\b/g, '');
+                newParentClass += ' ' + oldParentClass;
+                newParentClass = newParentClass.replace(/\s{2,}/g, ' ');
+                newParentClass = newParentClass.replace(/^\s+|\s+$/g, '');
             };
 
             if ($this.parent().hasClass('active')) {
@@ -42,11 +51,11 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
             }
 
             collapseDiv.append(
-                $('<div>').attr('class', 'panel panel-default').html(
+                $('<div>').attr('class', newParentClass).html(
                     $('<div>').attr('class', 'panel-heading').html(
                         $('<h4>').attr('class', 'panel-title').html(
                             $('<a>', {
-                                'class' : newClass,
+                                'class' : newLinkClass,
                                 'data-toggle': 'collapse',
                                 'data-parent' : '#collapse-' + $tabGroup.attr('id'),
                                 'href' : '#collapse-' + $this.attr('href').replace(/#/g, ''),
