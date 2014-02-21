@@ -120,19 +120,21 @@ fakewaffle.bindTabToCollapse = function () {
         collapse = $(".accordion.responsive").find('.accordion-body');
 
     tabs.on('shown', function (e) {
-        var $current  = $($(e.target)[0].hash.replace(/#/, '#collapse-')),
-            $previous = $($(e.relatedTarget)[0].hash.replace(/#/, '#collapse-'));
+        var $current  = $($(e.target)[0].hash.replace(/#/, '#collapse-'));
 
         if (!$current.hasClass('in')) {
             $current.addClass('in').height('auto');
-            $previous.removeClass('in').height('0px');
         }
+
+        if (e.relatedTarget) {
+            var $previous = $($(e.relatedTarget)[0].hash.replace(/#/, '#collapse-'));
+            $previous.removeClass('in').height('0px');
+        };
     });
 
     collapse.on('shown', function (e) {
         var current = $(e.target).context.id.replace(/collapse-/g, '#');
 
-        console.log('collapse shown');
         $('a[href="' + current + '"]').tab('show');
     });
 }

@@ -122,11 +122,13 @@ fakewaffle.bindTabToCollapse = function () {
         collapse = $(".panel-group.responsive").find('.panel-collapse');
 
     tabs.on('shown.bs.tab', function (e) {
-        var $current  = $($(e.target)[0].hash.replace(/#/, '#collapse-')),
-            $previous = $($(e.relatedTarget)[0].hash.replace(/#/, '#collapse-'));
-
+        var $current  = $($(e.target)[0].hash.replace(/#/, '#collapse-'));
         $current.collapse('show');
-        $previous.collapse('hide');
+
+        if(e.relatedTarget){
+            var $previous = $($(e.relatedTarget)[0].hash.replace(/#/, '#collapse-'));
+            $previous.collapse('hide');
+        }
     });
 
     collapse.on('show.bs.collapse', function (e) {
