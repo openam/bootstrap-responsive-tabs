@@ -1,9 +1,7 @@
-if (fakewaffle === undefined) {
-    var fakewaffle = {};
-}
+var fakewaffle = (function ($, fakewaffle) {
+    "use strict";
 
 fakewaffle.responsiveTabs = function (collapseDisplayed) {
-    "use strict";
     fakewaffle.currentPosition = 'tabs';
 
     var tabGroups = $('.nav-tabs.responsive'),
@@ -82,7 +80,6 @@ fakewaffle.responsiveTabs = function (collapseDisplayed) {
 };
 
 fakewaffle.checkResize = function () {
-    "use strict";
     if ($(".accordion.responsive").is(":visible") === true && fakewaffle.currentPosition === 'tabs') {
         fakewaffle.toggleResponsiveTabContent();
         fakewaffle.currentPosition = 'panel';
@@ -94,7 +91,6 @@ fakewaffle.checkResize = function () {
 };
 
 fakewaffle.toggleResponsiveTabContent = function () {
-    "use strict";
     var tabGroups = $('.nav-tabs.responsive');
 
     $.each(tabGroups, function () {
@@ -115,7 +111,6 @@ fakewaffle.toggleResponsiveTabContent = function () {
 };
 
 fakewaffle.bindTabToCollapse = function () {
-    "use strict";
     var tabs     = $('.nav-tabs.responsive').find('li a'),
         collapse = $(".accordion.responsive").find('.accordion-body');
 
@@ -140,6 +135,8 @@ fakewaffle.bindTabToCollapse = function () {
 }
 
 $(window).resize(function () {
-    "use strict";
     fakewaffle.checkResize();
 });
+
+    return fakewaffle;
+}(window.jQuery, fakewaffle || {}));
