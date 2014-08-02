@@ -63,9 +63,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 						$( '<div>', {
 							'id'    : 'collapse-' + $this.attr( 'href' ).replace( /#/g, '' ),
 							'class' : 'accordion-body collapse' + active
-						} ).html(
-							$( '<div>' ).attr( 'class', 'accordion-inner' ).html( '' )
-						)
+						} )
 					)
 				);
 			} );
@@ -81,33 +79,60 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 
 	fakewaffle.checkResize = function () {
 		if ( $( '.accordion.responsive' ).is( ':visible' ) === true && fakewaffle.currentPosition === 'tabs' ) {
-			fakewaffle.toggleResponsiveTabContent();
+			fakewaffle.tabToPanel();
 			fakewaffle.currentPosition = 'panel';
 		} else if ( $( '.accordion.responsive' ).is( ':visible' ) === false && fakewaffle.currentPosition === 'panel' ) {
-			fakewaffle.toggleResponsiveTabContent();
+			fakewaffle.panelToTab();
 			fakewaffle.currentPosition = 'tabs';
 		}
 
 	};
 
-	fakewaffle.toggleResponsiveTabContent = function () {
+	fakewaffle.tabToPanel = function () {
+
 		var tabGroups = $( '.nav-tabs.responsive' );
 
-		$.each( tabGroups, function () {
-			var tabs = $( this ).find( 'li a' );
+		$.each( tabGroups, function ( index, tabGroup ) {
 
-			$.each( tabs, function () {
-				var href         = $( this ).attr( 'href' ).replace( /#/g, '' );
-				var tabId        = '#' + href;
-				var panelId      = '#collapse-' + href;
-				var tabContent   = $( tabId ).html();
-				var panelContent = $( panelId + ' div:first-child' ).html();
+			// Find the tab
+			var tabContents = $( tabGroup ).next( '.tab-content' ).find( '.tab-pane' );
 
-				$( tabId ).html( panelContent );
-				$( panelId + ' div:first-child' ).html( tabContent );
+			$.each( tabContents, function ( index, tabContent ) {
+				// Find the id to move the element to
+				var destinationId = $( tabContent ).attr( 'id' ).replace ( /^/, '#collapse-' );
+
+				// Convert tab to panel and move to destination
+				$( tabContent )
+					.removeClass( 'tab-pane' )
+					.addClass( 'accordion-inner' )
+					.appendTo( $( destinationId ) );
+
 			} );
 
 		} );
+
+	};
+
+	fakewaffle.panelToTab = function () {
+
+		var panelGroups = $( '.accordion.responsive' );
+
+		$.each( panelGroups, function ( index, panelGroup ) {
+
+			var destinationId = $( panelGroup ).attr( 'id' ).replace( 'collapse-', '#' );
+			var destination   = $( destinationId ).next( '.tab-content' )[ 0 ];
+
+			// Find the panel contents
+			var panelContents = $( panelGroup ).find( '.accordion-inner' );
+
+			// Convert to tab and move to destination
+			panelContents
+				.removeClass( 'accordion-inner' )
+				.addClass( 'tab-pane' )
+				.appendTo( $( destination ) );
+
+		} );
+
 	};
 
 	fakewaffle.bindTabToCollapse = function () {

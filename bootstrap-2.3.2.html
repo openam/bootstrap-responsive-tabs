@@ -85,6 +85,7 @@
       fakewaffle.responsiveTabs(['xs', 'sm']);
   })(jQuery);
 &lt;/script&gt;</pre>
+          <button class='btn btn-primary js-alert-test'>Test Event Maintained</button>
         </div>
         <div class="tab-pane" id="features">
           <ul>
@@ -114,6 +115,11 @@
         $( '#myTab a' ).click( function ( e ) {
           e.preventDefault();
           $( this ).tab( 'show' );
+        } );
+
+        // Test for making sure event are maintained
+        $( '.js-alert-test' ).click( function () {
+          alert( 'Button Clicked: Event was maintained' );
         } );
 
         fakewaffle.responsiveTabs( [ 'phone', 'tablet' ] );

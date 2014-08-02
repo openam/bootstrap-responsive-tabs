@@ -66,9 +66,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 						$( '<div>', {
 							'id'    : 'collapse-' + $this.attr( 'href' ).replace( /#/g, '' ),
 							'class' : 'panel-collapse collapse' + active
-						} ).html(
-							$( '<div>' ).attr( 'class', 'panel-body' ).html( '' )
-						)
+						} )
 					)
 				);
 			} );
@@ -85,34 +83,60 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 	fakewaffle.checkResize = function () {
 
 		if ( $( '.panel-group.responsive' ).is( ':visible' ) === true && fakewaffle.currentPosition === 'tabs' ) {
-			fakewaffle.toggleResponsiveTabContent();
+			fakewaffle.tabToPanel();
 			fakewaffle.currentPosition = 'panel';
 		} else if ( $( '.panel-group.responsive' ).is( ':visible' ) === false && fakewaffle.currentPosition === 'panel' ) {
-			fakewaffle.toggleResponsiveTabContent();
+			fakewaffle.panelToTab();
 			fakewaffle.currentPosition = 'tabs';
 		}
 
 	};
 
-	fakewaffle.toggleResponsiveTabContent = function () {
+	fakewaffle.tabToPanel = function () {
 
 		var tabGroups = $( '.nav-tabs.responsive' );
 
-		$.each( tabGroups, function () {
-			var tabs = $( this ).find( 'li a' );
+		$.each( tabGroups, function ( index, tabGroup ) {
 
-			$.each( tabs, function () {
-				var href         = $( this ).attr( 'href' ).replace( /#/g, '' );
-				var tabId        = '#' + href;
-				var panelId      = '#collapse-' + href;
-				var tabContent   = $( tabId ).html();
-				var panelContent = $( panelId + ' div:first-child' ).html();
+			// Find the tab
+			var tabContents = $( tabGroup ).next( '.tab-content' ).find( '.tab-pane' );
 
-				$( tabId ).html( panelContent );
-				$( panelId + ' div:first-child' ).html( tabContent );
+			$.each( tabContents, function ( index, tabContent ) {
+				// Find the id to move the element to
+				var destinationId = $( tabContent ).attr( 'id' ).replace ( /^/, '#collapse-' );
+
+				// Convert tab to panel and move to destination
+				$( tabContent )
+					.removeClass( 'tab-pane' )
+					.addClass( 'panel-body' )
+					.appendTo( $( destinationId ) );
+
 			} );
 
 		} );
+
+	};
+
+	fakewaffle.panelToTab = function () {
+
+		var panelGroups = $( '.panel-group.responsive' );
+
+		$.each( panelGroups, function ( index, panelGroup ) {
+
+			var destinationId = $( panelGroup ).attr( 'id' ).replace( 'collapse-', '#' );
+			var destination   = $( destinationId ).next( '.tab-content' )[ 0 ];
+
+			// Find the panel contents
+			var panelContents = $( panelGroup ).find( '.panel-body' );
+
+			// Convert to tab and move to destination
+			panelContents
+				.removeClass( 'panel-body' )
+				.addClass( 'tab-pane' )
+				.appendTo( $( destination ) );
+
+		} );
+
 	};
 
 	fakewaffle.bindTabToCollapse = function () {
@@ -120,6 +144,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		var tabs     = $( '.nav-tabs.responsive' ).find( 'li a' );
 		var collapse = $( '.panel-group.responsive' ).find( '.panel-collapse' );
 
+		// Toggle the panels when the associated tab is toggled
 		tabs.on( 'shown.bs.tab', function ( e ) {
 			var $current  = $( $( e.target )[ 0 ].hash.replace( /#/, '#collapse-' ) );
 			$current.collapse( 'show' );
@@ -130,10 +155,17 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 			}
 		} );
 
+		// Toggle the tab when the associated panel is toggled
 		collapse.on( 'show.bs.collapse', function ( e ) {
-			var current = $( e.target ).context.id.replace( /collapse-/g, '#' );
+			var panelGroup = $( e.currentTarget ).closest( '.panel-group.responsive' );
 
+			// Activate current tabs
+			var current = $( e.target ).context.id.replace( /collapse-/g, '#' );
 			$( 'a[href="' + current + '"]' ).tab( 'show' );
+
+			// Update the content with active
+			$( panelGroup ).find( '.panel-body' ).removeClass( 'active' );
+			$( e.currentTarget ).find( '.panel-body' ).addClass( 'active' );
 		} );
 	};
 
