@@ -1,0 +1,110 @@
+{
+	"requireCurlyBraces" : [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"try",
+		"catch",
+		"default"
+	],
+
+	"requireSpaceAfterKeywords" : [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"switch",
+		"return",
+		"try",
+		"catch"
+	],
+
+	"requireSpaceBeforeBlockStatements" : true,
+
+	"requireSpacesInFunctionExpression" : {
+		"beforeOpeningRoundBrace" : true,
+		"beforeOpeningCurlyBrace" : true
+	},
+
+	"requireSpacesInAnonymousFunctionExpression" : {
+		"beforeOpeningRoundBrace" : true,
+		"beforeOpeningCurlyBrace" : true
+	},
+
+	"requireSpacesInNamedFunctionExpression" : {
+		"beforeOpeningRoundBrace" : true,
+		"beforeOpeningCurlyBrace" : true
+	},
+
+	"requireSpacesInFunctionDeclaration" : {
+		"beforeOpeningRoundBrace" : true,
+		"beforeOpeningCurlyBrace" : true
+	},
+
+	"requireSpacesInFunction" : {
+	    "beforeOpeningRoundBrace" : true,
+	    "beforeOpeningCurlyBrace" : true
+	},
+
+	"disallowMultipleVarDecl"           : true,
+	"requireBlocksOnNewline"            : true,
+	"disallowEmptyBlocks"               : true,
+	"requireSpacesInsideObjectBrackets" : "all",
+	"requireSpacesInsideArrayBrackets"  : "all",
+	"requireSpacesInsideParentheses"    : "all",
+	"requireSpaceAfterObjectKeys"       : true,
+	"requireCommaBeforeLineBreak"       : true,
+	"requireAlignedObjectValues"        : "skipWithLineBreak",
+
+	"requireSpaceBeforeBinaryOperators" : [
+		"+",
+		"-",
+		"/",
+		"*",
+		"=",
+		"==",
+		"===",
+		"!=",
+		"!=="
+	],
+
+	"requireSpaceAfterBinaryOperators" : [
+		"+",
+		"-",
+		"/",
+		"*",
+		"=",
+		"==",
+		"===",
+		"!=",
+		"!=="
+	],
+
+	"disallowImplicitTypeConversion"         : [ "numeric", "boolean", "binary", "string" ],
+	"requireCamelCaseOrUpperCaseIdentifiers" : true,
+	"disallowMultipleLineStrings"            : true,
+	"disallowMultipleLineBreaks"             : true,
+	"validateLineBreaks"                     : "LF",
+	"validateQuoteMarks"                     : { "mark": "'", "escape": true },
+	"validateIndentation"                    : "\t",
+	"disallowMixedSpacesAndTabs"             : true,
+	"disallowTrailingWhitespace"             : true,
+	"disallowTrailingComma"                  : true,
+	"disallowKeywordsOnNewLine"              : [ "else", "catch", "finally" ],
+	"requireLineFeedAtFileEnd"               : true,
+	"requireCapitalizedConstructors"         : true,
+	"safeContextKeyword"                     : [ "self", "that" ],
+	"requireDotNotation"                     : true,
+	"disallowYodaConditions"                 : true,
+
+	"validateJSDoc" : {
+	    "checkParamNames"      : true,
+	    "checkRedundantParams" : true,
+	    "requireParamTypes"    : true
+	},
+
+	"requireSpaceAfterLineComment" : true
+}

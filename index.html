@@ -138,18 +138,19 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="js/responsive-tabs.js"></script>
     <script type="text/javascript">
-      $('#myTab a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-      });
+      $( '#myTab a' ).click( function ( e ) {
+        e.preventDefault();
+        $( this ).tab( 'show' );
+      } );
 
-      $('#moreTabs a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-      });
-      (function($) {
-          fakewaffle.responsiveTabs(['xs', 'sm']);
-      })(jQuery);
+      $( '#moreTabs a' ).click( function ( e ) {
+        e.preventDefault();
+        $( this ).tab( 'show' );
+      } );
+
+      ( function( $ ) {
+          fakewaffle.responsiveTabs( [ 'xs', 'sm' ] );
+      } )( jQuery );
 
     </script>
     <script>

@@ -110,14 +110,14 @@
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="js/responsive-tabs-2.3.2.js"></script>
     <script>
-      $(function () {
-        $('#myTab a').click(function (e) {
-          e.preventDefault()
-          $(this).tab('show')
-        });
+      $( function () {
+        $( '#myTab a' ).click( function ( e ) {
+          e.preventDefault();
+          $( this ).tab( 'show' );
+        } );
 
-        fakewaffle.responsiveTabs(['phone', 'tablet']);
-      })
+        fakewaffle.responsiveTabs( [ 'phone', 'tablet' ] );
+      } );
     </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -1,0 +1,82 @@
+{
+	"env" : {
+		"node"    : true,
+		"browser" : true,
+		"amd"     : true,
+		"mocha"   : true
+	},
+
+	"rules": {
+
+		// Best Practices
+		"complexity"            : [ 1, 10 ],
+		"consistent-return"     : true,
+		"curly"                 : true,
+		"dot-notation"          : true,
+		"eqeqeq"                : true,
+		"no-else-return"        : true,
+		"no-eq-null"            : true,
+		"no-eval"               : true,
+		"no-extend-native"      : true,
+		"no-floating-decimal"   : true,
+		"no-implied-eval"       : true,
+		"no-labels"             : true,
+		"no-lone-blocks"        : true,
+		"no-loop-func"          : true,
+		"no-native-reassign"    : true,
+		"no-new"                : true,
+		"no-new-func"           : true,
+		"no-proto"              : true,
+		"no-redeclare"          : true,
+		"no-return-assign"      : true,
+		"no-script-url"         : true,
+		"no-self-compare"       : true,
+		"no-unused-expressions" : true,
+		"no-with"               : true,
+		"no-yoda"               : true,
+
+		// Strict Mode
+		"no-extra-strict" : true,
+		"strict"          : true,
+
+		// Variables
+		"no-catch-shadow"            : true,
+		"no-shadow"                  : true,
+		"no-shadow-restricted-names" : true,
+		"no-undef"                   : true,
+		"no-undef-init"              : true,
+		"no-unused-vars"             : false,
+		"no-use-before-define"       : true,
+
+		// Node.js
+		"handle-callback-err" : true,
+		"no-mixed-requires"   : true,
+		"no-path-concat"      : true,
+		"no-process-exit"     : true,
+
+		// Stylistic Issues
+		"brace-style"             : "1tbs",
+		"camelcase"               : true,
+		"consistent-this"         : [ 0, "self" ],
+		"func-names"              : true,
+		"new-cap"                 : true,
+		"new-parens"              : true,
+		"no-nested-ternary"       : true,
+		"no-array-constructor"    : true,
+		"no-new-object"           : true,
+		"no-spaced-func"          : true,
+		"no-space-before-semi"    : true,
+		"no-ternary"              : true,
+		"no-underscore-dangle"    : true,
+		"no-wrap-func"            : true,
+		"quotes"                  : [ 2, "single", "avoid-escape" ],
+		"quote-props"             : true,
+		"semi"                    : true,
+		"space-in-brackets"       : [ 1, "always" ],
+		"space-infix-ops"         : true,
+		"space-return-throw-case" : true,
+		"space-unary-word-ops"    : true,
+		"max-nested-callbacks"    : [ 1, 4 ],
+		"one-var"                 : false
+	}
+}
