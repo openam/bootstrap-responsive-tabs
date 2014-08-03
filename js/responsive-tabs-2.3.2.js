@@ -136,24 +136,25 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 	};
 
 	fakewaffle.bindTabToCollapse = function () {
+
 		var tabs     = $( '.nav-tabs.responsive' ).find( 'li a' );
 		var collapse = $( '.accordion.responsive' ).find( '.accordion-body' );
 
 		tabs.on( 'shown', function ( e ) {
-			var $current  = $( $( e.target )[ 0 ].hash.replace( /#/, '#collapse-' ) );
+			var $current  = $( e.currentTarget.hash.replace( /#/, '#collapse-' ) );
 
 			if ( !$current.hasClass( 'in' ) ) {
 				$current.addClass( 'in' ).height( 'auto' );
 			}
 
 			if ( e.relatedTarget ) {
-				var $previous = $( $( e.relatedTarget )[ 0 ].hash.replace( /#/, '#collapse-' ) );
+				var $previous = $( e.relatedTarget.hash.replace( /#/, '#collapse-' ) );
 				$previous.removeClass( 'in' ).height( '0px' );
 			}
 		} );
 
 		collapse.on( 'shown', function ( e ) {
-			var current = $( e.target ).context.id.replace( /collapse-/g, '#' );
+			var current = e.target.id.replace( /collapse-/g, '#' );
 
 			$( 'a[href="' + current + '"]' ).tab( 'show' );
 		} );

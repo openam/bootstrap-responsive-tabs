@@ -146,11 +146,11 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 
 		// Toggle the panels when the associated tab is toggled
 		tabs.on( 'shown.bs.tab', function ( e ) {
-			var $current  = $( $( e.target )[ 0 ].hash.replace( /#/, '#collapse-' ) );
+			var $current  = $( e.currentTarget.hash.replace( /#/, '#collapse-' ) );
 			$current.collapse( 'show' );
 
 			if ( e.relatedTarget ) {
-				var $previous = $( $( e.relatedTarget )[ 0 ].hash.replace( /#/, '#collapse-' ) );
+				var $previous = $( e.relatedTarget.hash.replace( /#/, '#collapse-' ) );
 				$previous.collapse( 'hide' );
 			}
 		} );
