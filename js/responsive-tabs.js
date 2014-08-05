@@ -163,15 +163,16 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 
 		// Toggle the tab when the associated panel is toggled
 		collapse.on( 'shown.bs.collapse', function ( e ) {
-			var panelGroup = $( e.currentTarget ).closest( '.panel-group.responsive' );
 
 			// Activate current tabs
 			var current = $( e.target ).context.id.replace( /collapse-/g, '#' );
 			$( 'a[href="' + current + '"]' ).tab( 'show' );
 
 			// Update the content with active
+			var panelGroup = $( e.currentTarget ).closest( '.panel-group.responsive' );
 			$( panelGroup ).find( '.panel-body' ).removeClass( 'active' );
 			$( e.currentTarget ).find( '.panel-body' ).addClass( 'active' );
+
 		} );
 	};
 

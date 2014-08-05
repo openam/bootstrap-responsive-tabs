@@ -159,9 +159,16 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		} );
 
 		collapse.on( 'shown', function ( e ) {
-			var current = e.target.id.replace( /collapse-/g, '#' );
 
+			// Activate current tabs
+			var current = e.target.id.replace( /collapse-/g, '#' );
 			$( 'a[href="' + current + '"]' ).tab( 'show' );
+
+			// Update the content with active
+			var panelGroup = $( e.currentTarget ).closest( '.accordion.responsive' );
+			$( panelGroup ).find( '.accordion-inner' ).removeClass( 'active' );
+			$( e.currentTarget ).find( '.accordion-inner' ).addClass( 'active' );
+
 		} );
 	};
 
