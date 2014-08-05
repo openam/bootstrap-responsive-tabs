@@ -2,6 +2,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 	'use strict';
 
 	fakewaffle.responsiveTabs = function ( collapseDisplayed ) {
+
 		fakewaffle.currentPosition = 'tabs';
 
 		var tabGroups = $( '.nav-tabs.responsive' );
@@ -32,6 +33,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 				var newLinkClass   = 'accordion-toggle';
 				var oldParentClass = $this.parent().attr( 'class' ) === undefined ? '' : $this.parent().attr( 'class' );
 				var newParentClass = 'accordion-group';
+				var newHash        = $this.get( 0 ).hash.replace( '#', 'collapse-' );
 
 				if ( oldLinkClass.length > 0 ) {
 					newLinkClass += ' ' + oldLinkClass;
@@ -55,13 +57,13 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 								'class'       : newLinkClass,
 								'data-toggle' : 'collapse',
 								'data-parent' : '#collapse-' + $tabGroup.attr( 'id' ),
-								'href'        : '#collapse-' + $this.attr( 'href' ).replace( /#/g, '' ),
+								'href'        : '#' + newHash,
 								'html'        : $this.html()
 							} )
 						)
 					).append(
 						$( '<div>', {
-							'id'    : 'collapse-' + $this.attr( 'href' ).replace( /#/g, '' ),
+							'id'    : newHash,
 							'class' : 'accordion-body collapse' + active
 						} )
 					)
@@ -75,6 +77,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 
 		fakewaffle.checkResize();
 		fakewaffle.bindTabToCollapse();
+
 	};
 
 	fakewaffle.checkResize = function () {
@@ -143,10 +146,12 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		tabs.on( 'shown', function ( e ) {
 			var $current  = $( e.currentTarget.hash.replace( /#/, '#collapse-' ) );
 
+			// manually open
 			if ( !$current.hasClass( 'in' ) ) {
 				$current.addClass( 'in' ).height( 'auto' );
 			}
 
+			// manually collapse
 			if ( e.relatedTarget ) {
 				var $previous = $( e.relatedTarget.hash.replace( /#/, '#collapse-' ) );
 				$previous.removeClass( 'in' ).height( '0px' );

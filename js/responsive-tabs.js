@@ -8,6 +8,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		var tabGroups = $( '.nav-tabs.responsive' );
 		var hidden    = '';
 		var visible   = '';
+		var activeTab = '';
 
 		if ( collapseDisplayed === undefined ) {
 			collapseDisplayed = [ 'xs', 'sm' ];
@@ -28,11 +29,11 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 
 			$.each( tabs, function () {
 				var $this          = $( this );
-				var active         = '';
 				var oldLinkClass   = $this.attr( 'class' ) === undefined ? '' : $this.attr( 'class' );
 				var newLinkClass   = 'accordion-toggle';
 				var oldParentClass = $this.parent().attr( 'class' ) === undefined ? '' : $this.parent().attr( 'class' );
 				var newParentClass = 'panel panel-default';
+				var newHash        = $this.get( 0 ).hash.replace( '#', 'collapse-' );
 
 				if ( oldLinkClass.length > 0 ) {
 					newLinkClass += ' ' + oldLinkClass;
@@ -46,7 +47,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 				}
 
 				if ( $this.parent().hasClass( 'active' ) ) {
-					active = ' in';
+					activeTab = '#' + newHash;
 				}
 
 				collapseDiv.append(
@@ -57,15 +58,15 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 									'class'       : newLinkClass,
 									'data-toggle' : 'collapse',
 									'data-parent' : '#collapse-' + $tabGroup.attr( 'id' ),
-									'href'        : '#collapse-' + $this.attr( 'href' ).replace( /#/g, '' ),
+									'href'        : '#' + newHash,
 									'html'        : $this.html()
 								} )
 							)
 						)
 					).append(
 						$( '<div>', {
-							'id'    : 'collapse-' + $this.attr( 'href' ).replace( /#/g, '' ),
-							'class' : 'panel-collapse collapse' + active
+							'id'    : newHash,
+							'class' : 'panel-collapse collapse'
 						} )
 					)
 				);
@@ -76,8 +77,13 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 			$( '.tab-content.responsive' ).addClass( hidden );
 		} );
 
+
 		fakewaffle.checkResize();
 		fakewaffle.bindTabToCollapse();
+
+		if ( activeTab ) {
+			$( activeTab ).collapse( 'show' );
+		}
 	};
 
 	fakewaffle.checkResize = function () {
@@ -156,7 +162,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		} );
 
 		// Toggle the tab when the associated panel is toggled
-		collapse.on( 'show.bs.collapse', function ( e ) {
+		collapse.on( 'shown.bs.collapse', function ( e ) {
 			var panelGroup = $( e.currentTarget ).closest( '.panel-group.responsive' );
 
 			// Activate current tabs
