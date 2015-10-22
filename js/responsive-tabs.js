@@ -22,7 +22,12 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		$.each( tabGroups, function () {
 			var $tabGroup   = $( this );
 			var tabs        = $tabGroup.find( 'li a' );
-			var collapseDiv = $( '<div></div>', {
+			var collapseDiv;
+			
+			if ($tabGroup.attr( 'id' ) === undefined)
+				$tabGroup.attr( 'id', 'tabs-' + index );
+			
+			collapseDiv = $( '<div></div>', {
 				'class' : 'panel-group responsive' + visible,
 				'id'    : 'collapse-' + $tabGroup.attr( 'id' )
 			} );
