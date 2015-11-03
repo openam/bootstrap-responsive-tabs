@@ -130,7 +130,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		$.each( panelGroups, function ( index, panelGroup ) {
 
 			var destinationId = $( panelGroup ).attr( 'id' ).replace( 'collapse-', '#' );
-			var destination   = $( destinationId ).next( '.tab-content' )[ 0 ];
+			vvar destination   = $( destinationId ).parent().find('.tab-content')[ 0 ];
 
 			// Find the panel contents
 			var panelContents = $( panelGroup ).find( '.panel-body' );
