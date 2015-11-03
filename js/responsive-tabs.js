@@ -72,7 +72,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 				);
 			} );
 
-			$tabGroup.next().after( collapseDiv );
+			$tabGroup.parent().find('.tab-content.responsive').after( collapseDiv );
 			$tabGroup.addClass( hidden );
 			$( '.tab-content.responsive' ).addClass( hidden );
 		} );
@@ -105,7 +105,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		$.each( tabGroups, function ( index, tabGroup ) {
 
 			// Find the tab
-			var tabContents = $( tabGroup ).next( '.tab-content' ).find( '.tab-pane' );
+			var tabContents = $( tabGroup ).parent().find('.tab-content.responsive').find( '.tab-pane' );;
 
 			$.each( tabContents, function ( index, tabContent ) {
 				// Find the id to move the element to
