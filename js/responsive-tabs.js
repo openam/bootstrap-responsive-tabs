@@ -1,3 +1,29 @@
+
+Skip to content
+This repository
+
+    Pull requests
+    Issues
+    Gist
+
+    @mav2287
+
+14
+81
+
+    41
+
+openam/bootstrap-responsive-tabs
+
+bootstrap-responsive-tabs/js/responsive-tabs.js
+bd0d457 a day ago
+@mav2287 mav2287 Update responsive-tabs.js
+4 contributors
+@openam
+@mav2287
+@mstrelan
+@mujuni88
+executable file 191 lines (143 sloc) 5.38 KB
 var fakewaffle = ( function ( $, fakewaffle ) {
 	'use strict';
 
@@ -188,3 +214,8 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 
 	return fakewaffle;
 }( window.jQuery, fakewaffle || { } ) );
+
+    Status API Training Shop Blog About Pricing 
+
+    © 2015 GitHub, Inc. Terms Privacy Security Contact Help 
+
