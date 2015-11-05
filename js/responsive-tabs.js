@@ -173,8 +173,8 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		} );
 
 		collapse.on('hide.bs.collapse', function( e ) {
-
-			if(!$currentTabClick.attr('href') == "#" + $(this).attr('id')){
+			
+			if(!($currentTabClick.attr('href') == "#" + $(this).attr('id'))){
 				e.preventDefault();
 			}
 
