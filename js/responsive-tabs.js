@@ -1,3 +1,5 @@
+var $currentTabClick = "";
+
 var fakewaffle = ( function ( $, fakewaffle ) {
 	'use strict';
 
@@ -59,7 +61,12 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 									'data-toggle' : 'collapse',
 									'data-parent' : '#collapse-' + $tabGroup.attr( 'id' ),
 									'href'        : '#' + newHash,
-									'html'        : $this.html()
+									'html'        : $this.html(),
+									'click'		  :
+										function(e){
+											// Set global variable to tell if self link was clicked
+											$currentTabClick = $(this);
+										}
 								} )
 							)
 						)
@@ -152,11 +159,11 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 
 		// Toggle the panels when the associated tab is toggled
 		tabs.on( 'shown.bs.tab', function ( e ) {
-			
+
 			if (fakewaffle.currentPosition === 'tabs') {
 				var $current  = $( e.currentTarget.hash.replace( /#/, '#collapse-' ) );
 				$current.collapse( 'show' );
-	
+
 				if ( e.relatedTarget ) {
 					var $previous = $( e.relatedTarget.hash.replace( /#/, '#collapse-' ) );
 					$previous.collapse( 'hide' );
@@ -165,14 +172,22 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 			
 		} );
 
+		collapse.on('hide.bs.collapse', function( e ) {
+
+			if(!$currentTabClick.attr('href') == "#" + $(this).attr('id')){
+				e.preventDefault();
+			}
+
+		});
+
 		// Toggle the tab when the associated panel is toggled
 		collapse.on( 'shown.bs.collapse', function ( e ) {
-			
+
 			if (fakewaffle.currentPosition === 'panel') {
 				// Activate current tabs
 				var current = $( e.target ).context.id.replace( /collapse-/g, '#' );
 				$( 'a[href="' + current + '"]' ).tab( 'show' );
-	
+
 				// Update the content with active
 				var panelGroup = $( e.currentTarget ).closest( '.panel-group.responsive' );
 				$( panelGroup ).find( '.panel-body' ).removeClass( 'active' );
