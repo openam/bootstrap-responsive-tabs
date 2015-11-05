@@ -173,9 +173,11 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		} );
 
 		collapse.on('hide.bs.collapse', function( e ) {
-			
-			if(!($currentTabClick.attr('href') == "#" + $(this).attr('id'))){
-				e.preventDefault();
+
+			if($currentTabClick != ""){
+				if(!($currentTabClick.attr('href') == "#" + $(this).attr('id'))){
+					e.preventDefault();
+				}
 			}
 
 		});
