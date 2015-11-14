@@ -19,10 +19,16 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 			visible += ' visible-' + this;
 		} );
 
-		$.each( tabGroups, function () {
-			var $tabGroup   = $( this );
-			var tabs        = $tabGroup.find( 'li a' );
-			var collapseDiv = $( '<div></div>', {
+		$.each( tabGroups, function ( index ) {
+			var collapseDiv;
+			var $tabGroup = $( this );
+			var tabs      = $tabGroup.find( 'li a' );
+
+			if ( $tabGroup.attr( 'id' ) === undefined ) {
+				$tabGroup.attr( 'id', 'tabs-' + index );
+			}
+
+			collapseDiv = $( '<div></div>', {
 				'class' : 'panel-group responsive' + visible,
 				'id'    : 'collapse-' + $tabGroup.attr( 'id' )
 			} );
