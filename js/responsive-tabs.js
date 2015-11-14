@@ -1,3 +1,4 @@
+
 var fakewaffle = ( function ( $, fakewaffle ) {
 	'use strict';
 
@@ -38,7 +39,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 				var oldLinkClass   = $this.attr( 'class' ) === undefined ? '' : $this.attr( 'class' );
 				var newLinkClass   = 'accordion-toggle';
 				var oldParentClass = $this.parent().attr( 'class' ) === undefined ? '' : $this.parent().attr( 'class' );
-				var newParentClass = 'panel panel-default';
+				var newParentClass = 'panel panel-default responsive';
 				var newHash        = $this.get( 0 ).hash.replace( '#', 'collapse-' );
 
 				if ( oldLinkClass.length > 0 ) {
@@ -58,8 +59,8 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 
 				collapseDiv.append(
 					$( '<div>' ).attr( 'class', newParentClass ).html(
-						$( '<div>' ).attr( 'class', 'panel-heading' ).html(
-							$( '<h4>' ).attr( 'class', 'panel-title' ).html(
+						$( '<div>' ).attr( 'class', 'panel-heading responsive' ).html(
+							$( '<h4>' ).attr( 'class', 'panel-title responsive' ).html(
 								$( '<a>', {
 									'class'       : newLinkClass,
 									'data-toggle' : 'collapse',
@@ -72,13 +73,13 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 					).append(
 						$( '<div>', {
 							'id'    : newHash,
-							'class' : 'panel-collapse collapse'
+							'class' : 'panel-collapse collapse responsive'
 						} )
 					)
 				);
 			} );
 
-			$tabGroup.next().after( collapseDiv );
+			$tabGroup.parent().find('.tab-content.responsive').after( collapseDiv );
 			$tabGroup.addClass( hidden );
 			$( '.tab-content.responsive' ).addClass( hidden );
 		} );
@@ -111,7 +112,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 		$.each( tabGroups, function ( index, tabGroup ) {
 
 			// Find the tab
-			var tabContents = $( tabGroup ).next( '.tab-content' ).find( '.tab-pane' );
+			var tabContents = $( tabGroup ).parent().find('.tab-content.responsive').find( '.tab-pane' );;
 
 			$.each( tabContents, function ( index, tabContent ) {
 				// Find the id to move the element to
@@ -120,7 +121,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 				// Convert tab to panel and move to destination
 				$( tabContent )
 					.removeClass( 'tab-pane' )
-					.addClass( 'panel-body' )
+					.addClass( 'panel-body responsive' )
 					.appendTo( $( destinationId ) );
 
 			} );
@@ -139,11 +140,11 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 			var destination   = $( destinationId ).next( '.tab-content' )[ 0 ];
 
 			// Find the panel contents
-			var panelContents = $( panelGroup ).find( '.panel-body' );
+			var panelContents = $( panelGroup ).find( '.panel-body.responsive' );
 
 			// Convert to tab and move to destination
 			panelContents
-				.removeClass( 'panel-body' )
+				.removeClass( 'panel-body responsive' )
 				.addClass( 'tab-pane' )
 				.appendTo( $( destination ) );
 
@@ -154,7 +155,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 	fakewaffle.bindTabToCollapse = function () {
 
 		var tabs     = $( '.nav-tabs.responsive' ).find( 'li a' );
-		var collapse = $( '.panel-group.responsive' ).find( '.panel-collapse' );
+		var collapse = $( '.panel-group.responsive' ).find( '.panel-collapse responsive' );
 
 		// Toggle the panels when the associated tab is toggled
 		tabs.on( 'shown.bs.tab', function ( e ) {
@@ -181,8 +182,8 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 	
 				// Update the content with active
 				var panelGroup = $( e.currentTarget ).closest( '.panel-group.responsive' );
-				$( panelGroup ).find( '.panel-body' ).removeClass( 'active' );
-				$( e.currentTarget ).find( '.panel-body' ).addClass( 'active' );
+				$( panelGroup ).find( '.panel-body.responsive' ).removeClass( 'active' );
+				$( e.currentTarget ).find( '.panel-body.responsive' ).addClass( 'active' );
 			}
 
 		} );
