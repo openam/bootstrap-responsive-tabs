@@ -81,15 +81,14 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 			$tabGroup.next().after( collapseDiv );
 			$tabGroup.addClass( hidden );
 			$( '.tab-content.responsive' ).addClass( hidden );
-		} );
 
+			if ( activeTab ) {
+				$( activeTab ).collapse( 'show' );
+			}
+		} );
 
 		fakewaffle.checkResize();
 		fakewaffle.bindTabToCollapse();
-
-		if ( activeTab ) {
-			$( activeTab ).collapse( 'show' );
-		}
 	};
 
 	fakewaffle.checkResize = function () {
@@ -158,27 +157,27 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 
 		// Toggle the panels when the associated tab is toggled
 		tabs.on( 'shown.bs.tab', function ( e ) {
-			
+
 			if (fakewaffle.currentPosition === 'tabs') {
 				var $current  = $( e.currentTarget.hash.replace( /#/, '#collapse-' ) );
 				$current.collapse( 'show' );
-	
+
 				if ( e.relatedTarget ) {
 					var $previous = $( e.relatedTarget.hash.replace( /#/, '#collapse-' ) );
 					$previous.collapse( 'hide' );
 				}
 			}
-			
+
 		} );
 
 		// Toggle the tab when the associated panel is toggled
 		collapse.on( 'shown.bs.collapse', function ( e ) {
-			
+
 			if (fakewaffle.currentPosition === 'panel') {
 				// Activate current tabs
 				var current = $( e.target ).context.id.replace( /collapse-/g, '#' );
 				$( 'a[href="' + current + '"]' ).tab( 'show' );
-	
+
 				// Update the content with active
 				var panelGroup = $( e.currentTarget ).closest( '.panel-group.responsive' );
 				$( panelGroup ).find( '.panel-body' ).removeClass( 'active' );
