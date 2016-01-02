@@ -120,7 +120,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 				// Convert tab to panel and move to destination
 				$( tabContent )
 					.removeClass( 'tab-pane' )
-					.addClass( 'panel-body' )
+					.addClass( 'panel-body fw-previous-tab-pane' )
 					.appendTo( $( destinationId ) );
 
 			} );
@@ -139,11 +139,11 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 			var destination   = $( destinationId ).next( '.tab-content' )[ 0 ];
 
 			// Find the panel contents
-			var panelContents = $( panelGroup ).find( '.panel-body' );
+			var panelContents = $( panelGroup ).find( '.panel-body.fw-previous-tab-pane' );
 
 			// Convert to tab and move to destination
 			panelContents
-				.removeClass( 'panel-body' )
+				.removeClass( 'panel-body fw-previous-tab-pane' )
 				.addClass( 'tab-pane' )
 				.appendTo( $( destination ) );
 
