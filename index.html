@@ -6,6 +6,9 @@
       .deco-none {
         text-decoration: none !important;
       }
+      .red-class {
+          color: red !important;
+      }
     </style>
   </head>
   <body>
@@ -34,7 +37,7 @@
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>Responsive Tabs Example</h1>
-        <p>This example illustrates how the responsive tabs works. It uses the standard <a href="//getbootstrap.com">Bootstrap 3.3.6</a> responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>This example illustrates how the responsive tabs works. It uses the standard <a href="//getbootstrap.com">Bootstrap</a> responsive CSS and HTML, so it also adapts to your viewport and device. This page is using Bootstrap 3.3.6</p>
         <p>To see the difference just resize the width of your window.</p>
       </div>
 
@@ -48,11 +51,11 @@
       <h4>Tabs with an assigned <code>id</code>.</h4>
       <ol>
           <li>First tab initialized as active.</li>
-          <li>First tab has extra classes <code>deco-none misc-class</code> that are copied to the anchor tags in the accordions.</li>
-          <li>First two tabs have extra class <code>test-class</code> that are copied to the <code>div.panel-default</code> in the accordions</li>
+          <li>First and third tab have a <code>deco-none</code> class and the first has an additional <code>red-class</code> that are copied to the anchor tags in the accordions.</li>
+          <li>First two tabs have extra class <code>test-class</code> that are copied to the <code>div.panel-default</code> in the accordions.</li>
       </ol>
       <ul class="nav nav-tabs responsive" id="myTab">
-        <li class="test-class active"><a class="deco-none misc-class" href="#resp-tab1"><span class="glyphicon glyphicon-cog"></span> Tab 1</a></li>
+        <li class="test-class active"><a class="deco-none red-class" href="#resp-tab1"><span class="glyphicon glyphicon-cog"></span> Tab 1</a></li>
         <li class="test-class"><a href="#resp-tab2"><span class="glyphicon glyphicon-headphones"></span> Tab 2</a></li>
         <li><a class="deco-none" href="#resp-tab3"><span class="glyphicon glyphicon-folder-open"></span> Tab 3</a></li>
       </ul>
@@ -68,22 +71,50 @@
       <h4>Tabs without an assigned <code>id</code>.</h4>
       <ol>
           <li>Second tab initialized as active.</li>
+          <li>Tabs are inside a panel.</li>
+          <li>Fourth tab has panels within it.</li>
       </ol>
-      <ul class="nav nav-tabs responsive">
-        <li><a href="#home-test-new">Home</a></li>
-        <li class="active"><a href="#profile-test-new">Profile</a></li>
-        <li><a href="#messages-test-new">Messages</a></li>
-        <li><a href="#fourth-test-new">Fourth</a></li>
-      </ul>
+      <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Panel containing responsive tabs</h3>
+          </div>
+          <div class="panel-body">
+              <ul class="nav nav-tabs responsive">
+                  <li><a href="#home-test-new">Home</a></li>
+                  <li class="active"><a href="#profile-test-new">Profile</a></li>
+                  <li><a href="#messages-test-new">Messages</a></li>
+                  <li><a href="#fourth-test-new">Fourth</a></li>
+              </ul>
 
-      <div class="tab-content responsive">
-        <div class="tab-pane active" id="home-test-new">Home ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu posuere tortor. Phasellus consectetur aliquet risus, in lacinia erat ullamcorper a. Suspendisse molestie porta metus, at cursus elit. Quisque et neque nec velit tincidunt fringilla.</div>
-        <div class="tab-pane" id="profile-test-new">Profile ... Phasellus consectetur aliquet risus, in lacinia erat ullamcorper a. Suspendisse molestie porta metus, at cursus elit. Quisque et neque nec velit tincidunt fringilla. Morbi eget nisi molestie, egestas turpis non, pharetra orci. Donec mattis sem ipsum, eu dapibus lacus rutrum in. Fusce blandit mi leo, non feugiat nunc tempus vitae.</div>
-        <div class="tab-pane" id="messages-test-new">Messages ... Quisque et neque nec velit tincidunt fringilla. Morbi eget nisi molestie, egestas turpis non, pharetra orci. Donec mattis sem ipsum, eu dapibus lacus rutrum in. Fusce blandit mi leo, non feugiat nunc tempus vitae. Mauris hendrerit, leo sit amet mollis bibendum, lacus augue auctor turpis, sed placerat augue libero quis massa.</div>
-        <div class="tab-pane" id="fourth-test-new">Fourth ... Quisque et neque nec velit tincidunt fringilla. Morbi eget nisi molestie, egestas turpis non, pharetra orci. Donec mattis sem ipsum, eu dapibus lacus rutrum in. Fusce blandit mi leo, non feugiat nunc tempus vitae. Mauris hendrerit, leo sit amet mollis bibendum, lacus augue auctor turpis, sed placerat augue libero quis massa.</div>
+              <div class="tab-content responsive">
+                  <div class="tab-pane active" id="home-test-new">Home ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu posuere tortor. Phasellus consectetur aliquet risus, in lacinia erat ullamcorper a. Suspendisse molestie porta metus, at cursus elit. Quisque et neque nec velit tincidunt fringilla.</div>
+                  <div class="tab-pane" id="profile-test-new">Profile ... Phasellus consectetur aliquet risus, in lacinia erat ullamcorper a. Suspendisse molestie porta metus, at cursus elit. Quisque et neque nec velit tincidunt fringilla. Morbi eget nisi molestie, egestas turpis non, pharetra orci. Donec mattis sem ipsum, eu dapibus lacus rutrum in. Fusce blandit mi leo, non feugiat nunc tempus vitae.</div>
+                  <div class="tab-pane" id="messages-test-new">Messages ... Quisque et neque nec velit tincidunt fringilla. Morbi eget nisi molestie, egestas turpis non, pharetra orci. Donec mattis sem ipsum, eu dapibus lacus rutrum in. Fusce blandit mi leo, non feugiat nunc tempus vitae. Mauris hendrerit, leo sit amet mollis bibendum, lacus augue auctor turpis, sed placerat augue libero quis massa.</div>
+                  <div class="tab-pane" id="fourth-test-new">
+                    <p>
+                      Fourth ...
+                    </p>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">Panel heading without title</div>
+                      <div class="panel-body">
+                        Panel content
+                      </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Panel title</h3>
+                      </div>
+                      <div class="panel-body">
+                        Panel content
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
       </div>
 
-      <h3>Standard Non-Responsive Tabs</h3>
+      <h3>Standard Tabs (Non-Responsive)</h3>
 
       <ul class="nav nav-tabs" id="nonResponsiveTabs">
         <li class="active"><a href="#nr-tab1">Markup</a></li>
