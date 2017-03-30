@@ -1,0 +1,20 @@
+{
+  "name": "bootstrap-responsive-tabs",
+  "version": "1.0.0",
+  "description": "This uses standard Bootstrap 3.0.0 css and js for the tabs and collapse accordion items. They are regular tabs at some screen sizes and collapsible components based on the Bootstrap Responsive Utilities, which can be defined by editing one attribute in the javascript file.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openam/bootstrap-responsive-tabs"
+  },
+  "keywords": [
+    "bootstrap",
+    "responsive",
+    "tabs"
+  ],
+  "author": "https://github.com/openam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openam/bootstrap-responsive-tabs/issues"
+  },
+  "homepage": "https://github.com/openam/bootstrap-responsive-tabs"
+}
